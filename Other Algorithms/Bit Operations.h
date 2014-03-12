@@ -98,6 +98,29 @@ void GetOnce(int nums[], int len, int& num1, int& num2)
 	}
 }
 
+int getIntegerComplement(int num)
+{
+	int limit = CountOnes(num);
+
+	unsigned int flag  = 1;
+
+	while(limit != 0)
+	{
+		if(num&flag)
+		{
+			num &= (flag^INT_MAX);
+			limit--;
+		}
+		else
+		{
+			num |= flag;
+		}
+		
+		flag = flag << 1;
+	}
+	return num;
+}
+
 /*
 Two numbers out of n numbers from 1 to n are missing. The remaining n-2 numbers are 
 restored in an array, not in any particular order. Please write a method (or a function) to find the missing two 
